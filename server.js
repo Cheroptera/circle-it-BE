@@ -76,6 +76,18 @@ const ExerciseSchema = new Schema({
 
 const Exercise = mongoose.model("Exercise", ExerciseSchema)
 
+//Seed database
+if(process.env.RESET_DB) {
+  const seedDatabase = async () => {
+    await Exercise.deleteMany();
+   exerciseData.forEach((exercise) => {
+      new Exercise(exercise).save()
+    })
+
+  }
+  seedDatabase()
+}
+
 //Login
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -106,7 +118,6 @@ app.post("/login", async (req, res) => {
 });
 
 
-
 // Start defining your routes here
 app.get('/', (req, res) => {
   res.send(listEndpoints(app))
@@ -119,7 +130,7 @@ app.get('/exercises', (req, res) => {
 })
 
 //Random workouts
-app.get("/exercises/random", async (req, res) => {
+app.get('/exercises/random', async (req, res) => {
   try {
     const randomWorkout = await Exercise.aggregate([
       { $sample: { size: 5 } },
