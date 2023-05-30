@@ -1,0 +1,144 @@
+[
+  {
+    "name": "Squats",
+    "description": "Bend your knees",
+    "musclegroup": [
+      "legs",
+      "butt"
+    ],
+    "equipment": [],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Glute bridge",
+    "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
+    "musclegroup": [
+      "legs",
+      "glutes",
+      "abdominals"
+    ],
+    "equipment": [],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Heel tap",
+    "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
+    "musclegroup": [
+      "abdominals"
+    ],
+    "equipment": [],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Burpees",
+    "description": "Stand straight with your feet shoulder-width apart. Squat and place your hands in front of your feet.Jump back until your legs are fully extended and your body is in plank position. Do a push up, jump forward, and then push through the heels to return to the starting position.Repeat until the set is complete",
+    "musclegroup": [
+      "legs",
+      "glutes"
+    ],
+    "equipment": [],
+    "type": "Cardio",
+    "img": "",
+    "highImpact": true
+  },
+  {
+    "name": "Snatches",
+    "description": "Sit your hips back and lower into a squat, letting the dumbbell hang down to touch the floor directly beneath your chest. Your back should be straight and you should keep your chest and head up. Return to standing and lift the dumbbell explosively using your legs and back.",
+    "musclegroup": [
+      "arms",
+      "back",
+      "shoulders"
+    ],
+    "equipment": [
+      "dumbbells"
+    ],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Lunges",
+    "description": "Place you feet with  shoulder-width apart. Take a sstep back with one foot, bend both knees to aproximatley 90 degrees.",
+    "musclegroup": [
+      "legs",
+      "glutes"
+    ],
+    "equipment": [],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Push up",
+    "description": "Bend your arms",
+    "musclegroup": [
+      "shoulders",
+      "abdominals",
+      "arms",
+      "back"
+    ],
+    "equipment": [],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Squat jumps",
+    "description": "Bend your knees and jump",
+    "musclegroup": [
+      "legs",
+      "butt"
+    ],
+    "equipment": [],
+    "type": "Strength",
+    "img": "",
+    "highImpact": true
+  },
+  {
+    "name": "Side raise",
+    "description": "Holding a dumbbell in each hand in a neutral grip (palms facing inwards). With a slight bend in your elbows, raise the dumbbells outwarss and upwards to shoulder hight.",
+    "musclegroup": [
+      "arms",
+      "back",
+      "shoulders"
+    ],
+    "equipment": [
+      "dumbbells"
+    ],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  },
+  {
+    "name": "Jump rope",
+    "description": "Jump with your rope",
+    "musclegroup": [
+      "full body"
+    ],
+    "equipment": [
+      "jump rope"
+    ],
+    "type": "Cardio",
+    "img": "",
+    "highImpact": true
+  },
+  {
+    "name": "Mussle",
+    "description": "Place the band around your thighs right above the knees. Lying on your side, lift your knee with your feet still together.",
+    "musclegroup": [
+      "glutes"
+    ],
+    "equipment": [
+      "fitness band"
+    ],
+    "type": "Strength",
+    "img": "",
+    "highImpact": false
+  }
+]
