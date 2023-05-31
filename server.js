@@ -88,6 +88,31 @@ if(process.env.RESET_DB) {
   seedDatabase()
 }
 
+/// Registration
+app.post('/signup', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const salt = bcrypt.genSaltSync()
+    const newUser = await new User({
+      username: username,
+      password: bcrypt.hashSync(password, salt)
+    }).save()
+    res.status(201).json({
+      success: true,
+      response: {
+        username: newUser.username,
+        id: newUser._id,
+        accessToken: newUser.accessToken
+      }
+    })
+  } catch (e) {
+    res.status(400).json({
+      success: false,
+      response: e
+    })
+  }
+})
+
 //Login
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -145,6 +170,8 @@ app.get('/exercises/random', async (req, res) => {
     })
   }
 })
+
+
 
 // Start the server
 app.listen(port, () => {
