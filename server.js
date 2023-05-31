@@ -177,7 +177,7 @@ app.get("/welcome", async (req, res) => {
   const user = await User.findOne({ accessToken: accessToken })
   // TODO const favorites = await favorites.find({ user: user._id })
   //https://mongoosejs.com/docs/populate.html
-  res.status(200).json({ success: true, response: thoughts })
+  res.status(200).json({ success: true, response: welcome })
 });
 
 
