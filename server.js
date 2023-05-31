@@ -22,8 +22,7 @@ app.use(express.json());
 
 const { Schema } = mongoose;
 
-
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   username:{
     type: String,
     required: true,
