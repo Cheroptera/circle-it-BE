@@ -22,8 +22,9 @@ app.use(express.json());
 
 const { Schema } = mongoose;
 
+
 const UserSchema = new Schema({
-  name:{
+  username:{
     type: String,
     required: true,
     unique: true
@@ -37,32 +38,8 @@ const UserSchema = new Schema({
     default: () => crypto.randomBytes(128).toString('hex')
   }
 })
-
-//Register
 const User = mongoose.model("User", UserSchema)
-app.post('/register', async (req, res) => {
-  const { username, password } = req.body
-try {
-  const salt = bcrypt.genSaltSync();
-  const newUser = await new User({
-    username: username,
-    password: bcrypt.hashSync(password, salt)
-  }).save();
-  res.status(201).json({
-    success: true,
-    response: {
-      username: newUser.username,
-      id: newUser._id,
-      accessToken: newUser.accessToken
-    }
-  })
-} catch (e) {
-  res.status(400).json({
-    success: false,
-    response: e
-  })
-}
-})
+
 
 const ExerciseSchema = new Schema({
   name: String,
@@ -191,6 +168,16 @@ app.get('/exercises/random', async (req, res) => {
     })
   }
 })
+
+//Welcome page
+app.get("/welcome", authenticateUser)
+app.get("/welcome", async (req, res) => {
+  const accessToken = req.header("Authorization")
+  const user = await User.findOne({ accessToken: accessToken })
+  // TODO const favorites = await favorites.find({ user: user._id })
+  //https://mongoosejs.com/docs/populate.html
+  res.status(200).json({ success: true, response: thoughts })
+});
 
 
 
