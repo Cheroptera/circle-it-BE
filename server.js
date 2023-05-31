@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import exerciseData from './data/exercises-bank.json'
 import listEndpoints from 'express-list-endpoints';
 
-const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/cirle-it"
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/circle-it"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
@@ -42,31 +42,6 @@ const UserSchema = new Schema({
 })
 const User = mongoose.model("User", UserSchema)
 
-
-const ExerciseSchema = new Schema({
-  name: String,
-  description: String,
-  musclegroup: [String],
-  equipment: [String],
-  type: String,
-  img: String,
-  highImpact: Boolean
-})
-
-const Exercise = mongoose.model("Exercise", ExerciseSchema)
-
-//Seed database
-if(process.env.RESET_DB) {
-  const seedDatabase = async () => {
-    await Exercise.deleteMany();
-   exerciseData.forEach((exercise) => {
-      new Exercise(exercise).save()
-    })
-
-  }
-  seedDatabase()
-}
-
 /// Registration
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body;
@@ -91,6 +66,31 @@ app.post('/signup', async (req, res) => {
     })
   }
 })
+const ExerciseSchema = new Schema({
+  name: String,
+  description: String,
+  musclegroup: [String],
+  equipment: [String],
+  type: String,
+  img: String,
+  highImpact: Boolean
+})
+
+const Exercise = mongoose.model("Exercise", ExerciseSchema)
+
+//Seed database
+if(process.env.RESET_DB) {
+  const seedDatabase = async () => {
+    await Exercise.deleteMany();
+   exerciseData.forEach((exercise) => {
+      new Exercise(exercise).save()
+    })
+
+  }
+  seedDatabase()
+}
+
+
 
 //Login
 app.post("/login", async (req, res) => {
