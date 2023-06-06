@@ -281,7 +281,7 @@ app.get("/exercises/equipment/:equipment", async (req, res) => {
   });
   
   // Endpoint for logged in users to see their favorites
-  app.get('/favorites', authenticateUser, async (req, res) => {
+  app.get('exercises/favorites', authenticateUser, async (req, res) => {
     try {
       const user = await User.findById(req.user._id).populate('favorites');
       if (user) {
