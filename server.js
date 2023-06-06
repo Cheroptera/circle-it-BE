@@ -154,26 +154,6 @@ const FavoriteSchema = new mongoose.Schema({
 
 const FavoriteModel = mongoose.model('Favorite', FavoriteSchema);
 
-app.post('/createFavorite', authenticateUser, async (req, res) => {
-  try {
-    const favorite = new FavoriteModel();
-    favorite.user = req.user._id; // Assuming req.user contains the logged-in user object with the user ID
-    favorite.body = req.body.body;
-    await favorite.save();
-
-    const user = await User.findById(req.user._id);
-    if (user) {
-      user.favorites.push(favorite._id);
-      await user.save();
-      res.json({ message: 'Favorite saved!' });
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ error });
-  }
-});
-
 
 // Start defining your routes here
 app.get('/', (req, res) => {
@@ -181,7 +161,7 @@ app.get('/', (req, res) => {
   // res.send('Hello test!');
 });
 
-//First route which shows all movies
+//First route which shows all exercises
 app.get('/exercises', (req, res) => {
   res.json(exerciseData)
 })
@@ -279,7 +259,40 @@ app.get("/exercises/equipment/:equipment", async (req, res) => {
   })
   }})
 
+  //Add favorites for logged in users
+  app.post('/createFavorite', authenticateUser, async (req, res) => {
+    try {
+      const favorite = new FavoriteModel();
+      favorite.user = req.user._id; // Assuming req.user contains the logged-in user object with the user ID
+      favorite.body = req.body.body;
+      await favorite.save();
   
+      const user = await User.findById(req.user._id);
+      if (user) {
+        user.favorites.push(favorite._id);
+        await user.save();
+        res.json({ message: 'Favorite saved!' });
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  });
+  
+  // Endpoint for logged in users to see their favorites
+  app.get('/favorites', authenticateUser, async (req, res) => {
+    try {
+      const user = await User.findById(req.user._id).populate('favorites');
+      if (user) {
+        res.json({ favorites: user.favorites });
+      } else {
+        res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  });
   
 
 // Start the server
