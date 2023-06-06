@@ -162,7 +162,7 @@ app.get('/', (req, res) => {
 });
 
 //First route which shows all exercises
-app.get('/exercises', (req, res) => {
+app.get('/exercises', authenticateUser, (req, res) => {
   res.json(exerciseData)
 })
 
@@ -196,7 +196,7 @@ app.get("/welcome", async (req, res) => {
 
 
 //Route to filter by musclegroup
-app.get("/exercises/musclegroup/:musclegroup", async (req, res) => {
+app.get("/exercises/musclegroup/:musclegroup", authenticateUser, async (req, res) => {
   const { musclegroup } = req.params
   try {
     const showMuscleGroup = await Exercise.find({ musclegroup: { $in: [musclegroup] } })
@@ -228,7 +228,7 @@ app.get("/exercises/musclegroup/:musclegroup", async (req, res) => {
   }})
 
 //Route to filter by equipment
-app.get("/exercises/equipment/:equipment", async (req, res) => {
+app.get("/exercises/equipment/:equipment", authenticateUser, async (req, res) => {
   const { equipment } = req.params
   try {
     const showEquipment = await Exercise.find({ equipment: { $in: [equipment] } })
@@ -314,6 +314,28 @@ app.get("/exercises/equipment/:equipment", async (req, res) => {
       res.status(500).json({ error });
     }
   });
+  
+  //Check if a user's favorites exist:
+
+  const checkFavoritesExist = async (userId) => {
+    try {  
+
+      // Find the favorites that belong to the user
+      const favorites = await FavoriteModel.find({ user: userId });
+      // Check if favorites exist
+      if (favorites.length > 0) {
+        console.log('User has favorites:', favorites);
+      } else {
+        console.log('User has no favorites.');
+      }
+    } catch (error) {
+      console.error('Error checking favorites:', error);
+    }
+  };
+  
+  // Call the function and pass the user ID
+  const userId = '647ef921853bafaca46af079'; // Replace with the actual user ID
+  checkFavoritesExist(userId);
   
 
 // Start the server
