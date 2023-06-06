@@ -34,12 +34,16 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
+  favorites:[{
+    type: Schema.Types.ObjectId, ref: 'Favorite'
+  }],
   accessToken:{
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
   }
 })
 const User = mongoose.model("User", UserSchema)
+
 
 /// Registration
 app.post('/signup', async (req, res) => {
@@ -140,6 +144,36 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
+const FavoriteSchema = new mongoose.Schema({
+  body: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
+});
+
+const FavoriteModel = mongoose.model('Favorite', FavoriteSchema);
+
+app.post('/createFavorite', authenticateUser, async (req, res) => {
+  try {
+    const favorite = new FavoriteModel();
+    favorite.user = req.user._id; // Assuming req.user contains the logged-in user object with the user ID
+    favorite.body = req.body.body;
+    await favorite.save();
+
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.favorites.push(favorite._id);
+      await user.save();
+      res.json({ message: 'Favorite saved!' });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
 
 // Start defining your routes here
 app.get('/', (req, res) => {
@@ -177,10 +211,76 @@ app.get("/welcome", async (req, res) => {
   const user = await User.findOne({ accessToken: accessToken })
   // TODO const favorites = await favorites.find({ user: user._id })
   //https://mongoosejs.com/docs/populate.html
-  res.status(200).json({ success: true, response: welcome })
+  res.status(200).json({ success: true, response: favorites })
 });
 
 
+//Route to filter by musclegroup
+app.get("/exercises/musclegroup/:musclegroup", async (req, res) => {
+  const { musclegroup } = req.params
+  try {
+    const showMuscleGroup = await Exercise.find({ musclegroup: { $in: [musclegroup] } })
+ 
+    if (showMuscleGroup.length > 0) {
+      res.status(200).json({
+        success: true,
+        message: 'OK',
+        body: {
+          showMuscleGroup
+        }
+      })
+    } else {
+        res.status(404).send({
+        success: false ,
+        body: {
+          message: "(404) Musclegroup not found",
+  
+        }
+        }
+       )}
+  } catch(error){
+       res.status(400).json({
+         success: false,
+         body: {
+           message: "bad request"
+        }
+  })
+  }})
+
+//Route to filter by equipment
+app.get("/exercises/equipment/:equipment", async (req, res) => {
+  const { equipment } = req.params
+  try {
+    const showEquipment = await Exercise.find({ equipment: { $in: [equipment] } })
+ 
+    if (showEquipment.length > 0) {
+      res.status(200).json({
+        success: true,
+        message: 'OK',
+        body: {
+          showEquipment
+        }
+      })
+    } else {
+        res.status(404).send({
+        success: false ,
+        body: {
+          message: "(404) Equipment not found",
+  
+        }
+        }
+       )}
+  } catch(error){
+       res.status(400).json({
+         success: false,
+         body: {
+           message: "bad request"
+        }
+  })
+  }})
+
+  
+  
 
 // Start the server
 app.listen(port, () => {

@@ -4,11 +4,11 @@
     "description": "Bend your knees",
     "musclegroup": [
       "legs",
-      "butt"
+      "glutes"
     ],
     "equipment": [],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
@@ -17,22 +17,22 @@
     "musclegroup": [
       "legs",
       "glutes",
-      "abdominals"
+      "abs"
     ],
     "equipment": [],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
     "name": "Heel tap",
     "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
     "musclegroup": [
-      "abdominals"
+      "abs"
     ],
     "equipment": [],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
@@ -44,7 +44,7 @@
     ],
     "equipment": [],
     "type": "Cardio",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": true
   },
   {
@@ -59,7 +59,7 @@
       "dumbbells"
     ],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
@@ -71,7 +71,7 @@
     ],
     "equipment": [],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
@@ -79,13 +79,13 @@
     "description": "Bend your arms",
     "musclegroup": [
       "shoulders",
-      "abdominals",
+      "abs",
       "arms",
       "back"
     ],
     "equipment": [],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
@@ -93,11 +93,11 @@
     "description": "Bend your knees and jump",
     "musclegroup": [
       "legs",
-      "butt"
+      "glutes"
     ],
     "equipment": [],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": true
   },
   {
@@ -112,7 +112,7 @@
       "dumbbells"
     ],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   },
   {
@@ -125,7 +125,7 @@
       "jump rope"
     ],
     "type": "Cardio",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": true
   },
   {
@@ -138,7 +138,22 @@
       "fitness band"
     ],
     "type": "Strength",
-    "img": "",
+    "img": "https://placekeanu.com/400/400",
+    "highImpact": false
+  },
+  {
+    "name": "Kettlebell swing",
+    "description": "Press your hips back, tipping your torso forward as you reach your hands toward the kettlebell handle. In one powerful movement, squeeze your glutes and hamstrings as hard as you can to rise to an upright position. ",
+    "musclegroup": [
+      "glutes",
+      "abs",
+      "hamstrings"
+    ],
+    "equipment": [
+      "kettlebells"
+    ],
+    "type": "Strength",
+    "img": "https://placekeanu.com/400/400",
     "highImpact": false
   }
 ]
