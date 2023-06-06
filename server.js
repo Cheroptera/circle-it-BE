@@ -145,7 +145,7 @@ const authenticateUser = async (req, res, next) => {
 }
 
 const FavoriteSchema = new mongoose.Schema({
-  body: String,
+  body: [],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -260,7 +260,7 @@ app.get("/exercises/equipment/:equipment", authenticateUser, async (req, res) =>
   }})
 
   //Add favorites for logged in users
-  app.post('exercises/addFavorite', authenticateUser, async (req, res) => {
+  app.post('exercises/addFavorite/:addFavorite', authenticateUser, async (req, res) => {
     try {
       const favorite = new FavoriteModel()
       favorite.user = req.user._id // Assuming req.user contains the logged-in user object with the user ID
