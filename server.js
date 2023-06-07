@@ -40,8 +40,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
-  favorites:[{
-    type: Schema.Types.ObjectId, ref: 'Favorite'
+  finishedWorkouts:[{
+    timestamp:new Date, 
+    exercises: [],
+    favorite: Boolean
   }],
   accessToken:{
     type: String,
@@ -160,6 +162,60 @@ const FavoriteSchema = new mongoose.Schema({
 
 const FavoriteModel = mongoose.model('Favorite', FavoriteSchema);
 
+app.post('/workouts', authenticateUser, async (req, res) => {
+  const { timestamp, exercises, favorite} = req.body
+  const userId = req.user._id
+
+  try {
+    const user = await User.findById(userId)
+    if (user) {
+      user.finishedWorkouts.push({ timestamp, exercises, favorite})
+      await user.save()
+      res.status(201).json({
+        success: true,
+        response: 'Workout saved successfully'
+      })
+    } else {
+      res.status(404).json({
+        success: false,
+        response: 'User not found, could not save the workout'
+      })
+    }
+  } catch (error) {
+    res.status(500).json({
+
+      success:false,
+      response: error
+    })
+  }
+})
+
+app.get('workouts/recent', authenticateUser, async (req, res) => {
+  const userId = req.user._id
+
+  try {
+    const user = await User.findById(userId)
+    if (user) {
+
+      const recentWorkouts = user.finishedWorkouts
+      res.status(200).json({
+        success:true,
+        response: recentWorkouts,
+      })
+    } else {
+      res.status(404).json({
+        success: false,
+        response: 'User not found, could not save workout',
+      })
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+
+      response: error
+    })
+  }
+})
 
 // Start defining your routes here
 app.get('/', (req, res) => {
@@ -168,6 +224,7 @@ app.get('/', (req, res) => {
 });
 
 //First route which shows all exercises
+app.get('/exercises', authenticateUser)
 app.get('/exercises', (req, res) => {
   res.json(exerciseData)
 })
@@ -200,9 +257,8 @@ app.get("/welcome", async (req, res) => {
   res.status(200).json({ success: true, response: favorites })
 });
 
-
 //Route to filter by musclegroup
-app.get("/exercises/musclegroup/:musclegroup", authenticateUser, async (req, res) => {
+app.get('/exercises/musclegroups/:musclegroup', authenticateUser, async (req, res) => {
   const { musclegroup } = req.params
   try {
     const showMuscleGroup = await Exercise.find({ musclegroup: { $in: [musclegroup] } })
@@ -234,7 +290,7 @@ app.get("/exercises/musclegroup/:musclegroup", authenticateUser, async (req, res
   }})
 
 //Route to filter by equipment
-app.get("/exercises/equipment/:equipment", authenticateUser, async (req, res) => {
+app.get('/exercises/equipment/:equipment', authenticateUser, async (req, res) => {
   const { equipment } = req.params
   try {
     const showEquipment = await Exercise.find({ equipment: { $in: [equipment] } })
@@ -265,8 +321,10 @@ app.get("/exercises/equipment/:equipment", authenticateUser, async (req, res) =>
   })
   }})
 
+  app.post('/exercises/addRecent')
+
   //Add favorites for logged in users
-  app.post('exercises/addFavorite/:addFavorite', authenticateUser, async (req, res) => {
+  app.post('/exercises/addFavorite/:addFavorite', authenticateUser, async (req, res) => {
     try {
       const favorite = new FavoriteModel()
       favorite.user = req.user._id // Assuming req.user contains the logged-in user object with the user ID
