@@ -17,7 +17,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 // Add middlewares to enable cors and json body parsing
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:3000', 'https://imaginative-churros-e76935.netlify.app'] }));
 app.use(express.json());
 
 const { Schema } = mongoose;
