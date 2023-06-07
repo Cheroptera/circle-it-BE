@@ -168,7 +168,7 @@ app.get('/', (req, res) => {
 });
 
 //First route which shows all exercises
-app.get('/exercises', authenticateUser, (req, res) => {
+app.get('/exercises', (req, res) => {
   res.json(exerciseData)
 })
 
