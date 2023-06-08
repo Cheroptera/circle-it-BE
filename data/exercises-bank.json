@@ -14,7 +14,7 @@
     "musclegroup": ["legs", "glutes", "abs"],
     "equipment": [],
     "type": "Strength",
-    "img": "https://placekeanu.com/400/400",
+    "img": "https://storage.googleapis.com/circleit-img/glutebridge.svg",
     "highImpact": false
   },
   {
@@ -23,7 +23,7 @@
     "musclegroup": ["abs"],
     "equipment": [],
     "type": "Strength",
-    "img": "https://placekeanu.com/400/400",
+    "img": "https://storage.googleapis.com/circleit-img/heeltap.svg",
     "highImpact": false
   },
   {
