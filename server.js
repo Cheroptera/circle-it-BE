@@ -34,6 +34,8 @@ app.use(express.json())
 
 const { Schema } = mongoose
 
+/// Schemas
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -59,6 +61,40 @@ const UserSchema = new mongoose.Schema({
 })
 const User = mongoose.model('User', UserSchema)
 
+const ExerciseSchema = new Schema({
+  name: String,
+  description: String,
+  musclegroup: [String],
+  equipment: [String],
+  type: String,
+  img: String,
+  highImpact: Boolean
+})
+
+const Exercise = mongoose.model('Exercise', ExerciseSchema)
+
+const FavoriteSchema = new mongoose.Schema({
+  body: [],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
+})
+
+const FavoriteModel = mongoose.model('Favorite', FavoriteSchema)
+
+// Seed database
+
+if (process.env.RESET_DB) {
+  const seedDatabase = async () => {
+    await Exercise.deleteMany()
+    exerciseData.forEach((exercise) => {
+      new Exercise(exercise).save()
+    })
+  }
+  seedDatabase()
+}
+
 /// Registration
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body
@@ -83,28 +119,6 @@ app.post('/signup', async (req, res) => {
     })
   }
 })
-const ExerciseSchema = new Schema({
-  name: String,
-  description: String,
-  musclegroup: [String],
-  equipment: [String],
-  type: String,
-  img: String,
-  highImpact: Boolean
-})
-
-const Exercise = mongoose.model('Exercise', ExerciseSchema)
-
-//Seed database
-if (process.env.RESET_DB) {
-  const seedDatabase = async () => {
-    await Exercise.deleteMany()
-    exerciseData.forEach((exercise) => {
-      new Exercise(exercise).save()
-    })
-  }
-  seedDatabase()
-}
 
 //Login
 app.post('/login', async (req, res) => {
@@ -155,15 +169,54 @@ const authenticateUser = async (req, res, next) => {
   }
 }
 
-const FavoriteSchema = new mongoose.Schema({
-  body: [],
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+// Start defining your routes here
+app.get('/', (req, res) => {
+  res.send(listEndpoints(app))
+  // res.send('Hello test!');
+})
+
+//First route which shows all exercises
+app.get('/exercises', authenticateUser)
+app.get('/exercises', (req, res) => {
+  res.json(exerciseData)
+})
+
+//Random workouts
+app.get('/exercises/random', async (req, res) => {
+  const { musclegroup, equipment } = req.query
+  try {
+    const query = {}
+    if (musclegroup) {
+      query.musclegroup = { $in: [musclegroup] }
+    }
+    if (equipment) {
+      query.equipment = { $in: [equipment] }
+    }
+    const randomWorkout = await Exercise.aggregate([
+      { $match: query },
+      { $sample: { size: 5 } }
+    ])
+    res.status(200).json({
+      success: true,
+      response: randomWorkout
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error
+    })
   }
 })
 
-const FavoriteModel = mongoose.model('Favorite', FavoriteSchema)
+//Welcome page
+app.get('/welcome', authenticateUser)
+app.get('/welcome', async (req, res) => {
+  const accessToken = req.header('Authorization')
+  const user = await User.findOne({ accessToken: accessToken })
+  // TODO const favorites = await favorites.find({ user: user._id })
+  //https://mongoosejs.com/docs/populate.html
+  res.status(200).json({ success: true, response: favorites })
+})
 
 app.post('/workouts', authenticateUser, async (req, res) => {
   const { exercises, favorite } = req.body
@@ -217,45 +270,6 @@ app.get('workouts/recent', authenticateUser, async (req, res) => {
     })
   }
 })
-
-// Start defining your routes here
-app.get('/', (req, res) => {
-  res.send(listEndpoints(app))
-  // res.send('Hello test!');
-})
-
-//First route which shows all exercises
-app.get('/exercises', authenticateUser)
-app.get('/exercises', (req, res) => {
-  res.json(exerciseData)
-})
-
-//Random workouts
-app.get('/exercises/random', async (req, res) => {
-  try {
-    const randomWorkout = await Exercise.aggregate([{ $sample: { size: 5 } }])
-    res.status(200).json({
-      success: true,
-      response: randomWorkout
-    })
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      response: error
-    })
-  }
-})
-
-//Welcome page
-app.get('/welcome', authenticateUser)
-app.get('/welcome', async (req, res) => {
-  const accessToken = req.header('Authorization')
-  const user = await User.findOne({ accessToken: accessToken })
-  // TODO const favorites = await favorites.find({ user: user._id })
-  //https://mongoosejs.com/docs/populate.html
-  res.status(200).json({ success: true, response: favorites })
-})
-
 //Route to filter by musclegroup
 app.get(
   '/exercises/musclegroups/:musclegroup',
