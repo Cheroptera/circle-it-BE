@@ -18,6 +18,15 @@
     "highImpact": false
   },
   {
+    "name": "Single leg glute bridge",
+    "description": "Lay on the floor with your feet flat and knees bent. Raise one leg off of the ground. Drive through the heel, extending your hip upward and raising your glutes off of the ground.",
+    "musclegroup": ["legs", "glutes", "abs"],
+    "equipment": [],
+    "type": "Strength",
+    "img": "https://storage.googleapis.com/circleit-img/singleglutebridge.svg",
+    "highImpact": false
+  },
+  {
     "name": "Heel tap",
     "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
     "musclegroup": ["abs"],
@@ -32,8 +41,17 @@
     "musclegroup": ["legs", "glutes"],
     "equipment": [],
     "type": "Cardio",
-    "img": "https://placekeanu.com/400/400",
+    "img": "https://storage.googleapis.com/circleit-img/burpee.svg",
     "highImpact": true
+  },
+  {
+    "name": "One leg deadlift",
+    "description": "Sit your hips back and lower into a squat. Keep your chest up and your back straight, and begin driving through the heels to move the weight upward.",
+    "musclegroup": ["arms", "back", "shoulders"],
+    "equipment": ["kettlebells", "dumbbells"],
+    "type": "Strength",
+    "img": "https://storage.googleapis.com/circleit-img/onelegdeadlift.svg",
+    "highImpact": false
   },
   {
     "name": "Snatches",
@@ -72,6 +90,15 @@
     "highImpact": true
   },
   {
+    "name": "Mountain climbers",
+    "description": "Start in a plank",
+    "musclegroup": ["legs", "glutes"],
+    "equipment": [],
+    "type": "Cardio",
+    "img": "https://storage.googleapis.com/circleit-img/mountainclimber.svg",
+    "highImpact": true
+  },
+  {
     "name": "Side raise",
     "description": "Holding a dumbbell in each hand in a neutral grip (palms facing inwards). With a slight bend in your elbows, raise the dumbbells outwards and upwards to shoulder hight.",
     "musclegroup": ["arms", "back", "shoulders"],
@@ -90,6 +117,24 @@
     "highImpact": true
   },
   {
+    "name": "Skater jumps",
+    "description": "Bend one leg behind the supporting leg at a slight angle and leap off to the other leg. Be sure to land softly with your knees slightly bent.",
+    "musclegroup": ["full body"],
+    "equipment": [],
+    "type": "Cardio",
+    "img": "https://storage.googleapis.com/circleit-img/skaterjump.svg",
+    "highImpact": true
+  },
+  {
+    "name": "Side shuffle",
+    "description": "Stand with your feet a little wider than hip-width apart, bend your hips and knees back and point your toes forward. Take a few quick steps to the left and then touch your left foot with your left hand.",
+    "musclegroup": ["full body"],
+    "equipment": [],
+    "type": "Cardio",
+    "img": "https://storage.googleapis.com/circleit-img/sideshuffle.svg",
+    "highImpact": false
+  },
+  {
     "name": "Clamshell",
     "description": "Place the band around your thighs right above the knees. Lying on your side, lift your knee with your feet still together.",
     "musclegroup": ["glutes"],
@@ -105,6 +150,15 @@
     "equipment": ["kettlebells"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/kettlebellswing.svg",
+    "highImpact": false
+  },
+  {
+    "name": "One arm row",
+    "description": "Bend forward from the waist until your upper body is parallel to the floor. Pull the resistance straight up to the side of your chest, keeping your upper arm close to your side and keeping the torso stationary.",
+    "musclegroup": ["back"],
+    "equipment": ["kettlebells", "dumbbells"],
+    "type": "Strength",
+    "img": "https://storage.googleapis.com/circleit-img/onearmkbrow.svg",
     "highImpact": false
   }
 ]
