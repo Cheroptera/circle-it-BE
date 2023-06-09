@@ -41,7 +41,10 @@ const UserSchema = new mongoose.Schema({
     minlength: 6
   },
   finishedWorkouts:[{
-    timestamp:new Date, 
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
     exercises: [],
     favorite: Boolean
   }],
@@ -163,13 +166,13 @@ const FavoriteSchema = new mongoose.Schema({
 const FavoriteModel = mongoose.model('Favorite', FavoriteSchema);
 
 app.post('/workouts', authenticateUser, async (req, res) => {
-  const { timestamp, exercises, favorite} = req.body
+  const { createdAt, exercises, favorite} = req.body
   const userId = req.user._id
 
   try {
     const user = await User.findById(userId)
     if (user) {
-      user.finishedWorkouts.push({ timestamp, exercises, favorite})
+      user.finishedWorkouts.push({ createdAt, exercises, favorite})
       await user.save()
       res.status(201).json({
         success: true,
@@ -231,14 +234,26 @@ app.get('/exercises', (req, res) => {
 
 //Random workouts
 app.get('/exercises/random', async (req, res) => {
+  const { muscleGroups, equipment, inclusion } = req.query
+
+  const query = {}
+  
+  if (muscleGroups) {
+    const operator = inclusion === 'in' ? '$in' : '$nin'
+    query.muscleGroup = { [operator]: muscleGroups.split(",") }
+  }
+
+  if (equipment) {
+    const operator = inclusion === 'in' ? '$in' : '$nin'
+    query.equipment = { [operator]: equipment.split(",") }
+  }
+
   try {
-    const randomWorkout = await Exercise.aggregate([
-      { $sample: { size: 5 } },
-    ])
+    const randomWorkout = await Exercise.aggregate([{ $match: query }, { $sample: { size: 5 } }])
     res.status(200).json({
       success: true,
       response: randomWorkout
-    })
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
