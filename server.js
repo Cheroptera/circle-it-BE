@@ -48,8 +48,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
-  finishedWorkouts:[{
-    timestamp:new Date, 
+    finishedWorkouts:[{
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
     exercises: [],
     favorite: Boolean
   }],
@@ -218,7 +221,7 @@ app.get('/welcome', async (req, res) => {
 })
 
 app.post('/workouts', authenticateUser, async (req, res) => {
-  const { timestamp, exercises, favorite} = req.body
+  const { createdAt, exercises, favorite} = req.body
   const userId = req.user._id
 
   try {
