@@ -79,7 +79,7 @@
       "shoulders"
     ],
     "equipment": [
-      "kettlebells",
+      "kettlebell",
       "dumbbells"
     ],
     "type": "Strength",
@@ -235,10 +235,10 @@
       "hamstrings"
     ],
     "equipment": [
-      "kettlebells"
+      "kettlebell"
     ],
     "type": "Strength",
-    "img": "https://storage.googleapis.com/circleit-img/kettlebellswing.svg",
+    "img": "https://storage.googleapis.com/circleit-img/kettlebellwing.svg",
     "highImpact": false
   },
   {
@@ -248,7 +248,7 @@
       "back"
     ],
     "equipment": [
-      "kettlebells",
+      "kettlebell",
       "dumbbells"
     ],
     "type": "Strength",

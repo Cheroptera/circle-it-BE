@@ -79,7 +79,7 @@ const FavoriteSchema = new mongoose.Schema({
   body: [],
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   }
 })
 
@@ -388,6 +388,55 @@ app.get(
     }
   }
 )
+
+//Endpoint for the user to be able to filter exercises based on multiple choices
+
+app.get('/exercises/filter', authenticateUser, async (req, res) => {
+  const { musclegroup, equipment, impact } = req.query;
+
+  try {
+    let query = {};
+
+    if (musclegroup) {
+      query.musclegroup = { $in: musclegroup.split(',') };
+    }
+
+    if (equipment) {
+      query.equipment = { $in: equipment.split(',') };
+    }
+
+    if (impact === 'low') {
+      query.highImpact = false;
+    }
+
+    const filteredExercises = await Exercise.find(query);
+
+    if (filteredExercises.length > 0) {
+      res.status(200).json({
+        success: true,
+        message: 'OK',
+        body: {
+          exercises: filteredExercises
+        }
+      });
+    } else {
+      res.status(404).send({
+        success: false,
+        body: {
+          message: 'No exercises found'
+        }
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      body: {
+        message: 'Bad request'
+      }
+    });
+  }
+});
+
 
 app.post('/exercises/addRecent')
 
