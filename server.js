@@ -20,7 +20,7 @@ const app = express()
 app.use((req, res, next) => {
   res.setHeader(
     'Access-Control-Allow-Origin',
-    'http://localhost:3000', 'http://localhost:3000/set-timer:1', 'https://imaginative-churros-e76935.netlify.app'
+    'http://localhost:3000', 'http://localhost:3000/set-timer', 'https://imaginative-churros-e76935.netlify.app'
   )
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   res.setHeader(
@@ -47,10 +47,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
-    finishedWorkouts:[{
+  //! Check parameter names below and compare to frontend
+  finishedWorkouts:[{
     createdAt: {
-      type: Date,
-      default: Date.now
+    type: Date,
+    default: Date.now
     },
     exercises: [],
     favorite: Boolean
@@ -341,6 +342,7 @@ const checkFavoritesExist = async (userId) => {
 
 /// Workouts
 app.post('/workouts', authenticateUser, async (req, res) => {
+  console.log(req.body)
   const { createdAt, exercises, favorite} = req.body
   const userId = req.user._id
 
