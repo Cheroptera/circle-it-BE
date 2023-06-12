@@ -17,18 +17,18 @@ const port = process.env.PORT || 8080
 const app = express()
 
 // Add middlewares to enable cors and json body parsing
-app.use((req, res, next) => {
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'http://localhost:3000', 'http://localhost:3000/set-timer', 'https://imaginative-churros-e76935.netlify.app'
-  )
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Content-Type, Authorization, X-RapidAPI-Key'
-  )
-  next()
-})
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     'Access-Control-Allow-Origin',
+//     'http://localhost:3000', 'http://localhost:3000/set-timer', 'https://imaginative-churros-e76935.netlify.app'
+//   )
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'Content-Type, Authorization, X-RapidAPI-Key'
+//   )
+//   next()
+// })
 app.use(cors())
 app.use(express.json())
 
@@ -48,15 +48,15 @@ const UserSchema = new mongoose.Schema({
     minlength: 6
   },
   //! Check parameter names below and compare to frontend
-  finishedWorkouts:[{
+  finishedWorkouts: [{
     createdAt: {
-    type: Date,
-    default: Date.now
+      type: Date,
+      default: Date.now
     },
     exercises: [],
     favorite: Boolean
   }],
-  accessToken:{
+  accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
   }
@@ -178,8 +178,8 @@ const authenticateUser = async (req, res, next) => {
 /// Welcome page
 app.get('/welcome', authenticateUser)
 app.get('/welcome', async (req, res) => {
-/*   const accessToken = req.header('Authorization')
-  const user = await User.findOne({ accessToken: accessToken }) */
+  /*   const accessToken = req.header('Authorization')
+    const user = await User.findOne({ accessToken: accessToken }) */
   // TODO const favorites = await favorites.find({ user: user._id })
   //https://mongoosejs.com/docs/populate.html
   res.status(200).json({ success: true, response: favorites })
@@ -343,13 +343,13 @@ const checkFavoritesExist = async (userId) => {
 /// Workouts
 app.post('/workouts', authenticateUser, async (req, res) => {
   console.log(req.body)
-  const { createdAt, exercises, favorite} = req.body
+  const { createdAt, exercises, favorite } = req.body
   const userId = req.user._id
 
   try {
     const user = await User.findById(userId)
     if (user) {
-      user.finishedWorkouts.push({ createdAt, exercises, favorite})
+      user.finishedWorkouts.push({ createdAt, exercises, favorite })
       await user.save()
       res.status(201).json({
         success: true,
