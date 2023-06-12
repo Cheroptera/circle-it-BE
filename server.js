@@ -177,8 +177,8 @@ const authenticateUser = async (req, res, next) => {
 /// Welcome page
 app.get('/welcome', authenticateUser)
 app.get('/welcome', async (req, res) => {
-  const accessToken = req.header('Authorization')
-  const user = await User.findOne({ accessToken: accessToken })
+/*   const accessToken = req.header('Authorization')
+  const user = await User.findOne({ accessToken: accessToken }) */
   // TODO const favorites = await favorites.find({ user: user._id })
   //https://mongoosejs.com/docs/populate.html
   res.status(200).json({ success: true, response: favorites })
