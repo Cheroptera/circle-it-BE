@@ -112,26 +112,35 @@ app.get('/', (req, res) => {
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body
   try {
-    const salt = bcrypt.genSaltSync()
-    const newUser = await new User({
-      username: username,
-      password: bcrypt.hashSync(password, salt)
-    }).save()
-    res.status(201).json({
-      success: true,
-      response: {
-        username: newUser.username,
-        id: newUser._id,
-        accessToken: newUser.accessToken
-      }
-    })
+    const existingUser = await User.findOne({ username })
+    if (existingUser) {
+      res.status(400).json({
+        success: false,
+        response: 'User already exists',
+      });
+    } else {
+      const salt = bcrypt.genSaltSync()
+      const newUser = await new User({
+        username: username,
+        password: bcrypt.hashSync(password, salt),
+      }).save();
+      res.status(201).json({
+        success: true,
+        response: {
+          username: newUser.username,
+          id: newUser._id,
+          accessToken: newUser.accessToken,
+        },
+      });
+    }
   } catch (e) {
-    res.status(400).json({
+    res.status(500).json({
       success: false,
-      response: e
+      response: e,
     })
   }
 })
+
 
 /// Login
 app.post('/login', async (req, res) => {
