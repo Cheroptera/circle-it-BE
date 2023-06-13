@@ -263,7 +263,7 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
 });
 
 /// Workouts
-app.post('/workouts', authenticateUser, async (req, res) => {
+app.patch('/workouts', authenticateUser, async (req, res) => {
   console.log(req.body)
   const { timestamp, exercises } = req.body
   const userId = req.user._id
