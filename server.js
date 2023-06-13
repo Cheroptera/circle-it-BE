@@ -64,12 +64,15 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
-  //! Check parameter names below and compare to frontend
-  // favoriteWorkouts: [{
-  createdAt: {
-    type: Date
-  },
-  exercises: [Schema.Types.Mixed],
+  favoriteWorkout: [
+    {
+      timestamp: {
+        type: Date, default:
+          Date.now
+      },
+      exercises: [ExerciseSchema],
+    },
+  ],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
