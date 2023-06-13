@@ -265,13 +265,13 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
 /// Workouts
 app.post('/workouts', authenticateUser, async (req, res) => {
   console.log(req.body)
-  const { createdAt, exercises } = req.body
+  const { timestamp, exercises } = req.body
   const userId = req.user._id
 
   try {
     const user = await User.findById(userId)
     if (user) {
-      user.favoriteWorkouts.push({ createdAt, exercises })
+      user.favoriteWorkouts.push({ timestamp, exercises })
       await user.save()
       res.status(201).json({
         success: true,
