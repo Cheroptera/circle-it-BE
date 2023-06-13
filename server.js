@@ -65,13 +65,11 @@ const UserSchema = new mongoose.Schema({
     minlength: 6
   },
   //! Check parameter names below and compare to frontend
-  favoriteWorkout: [{
-    createdAt: {
-      type: Date,
-      default: Date.now
-    },
-    exercises: []
-  }],
+  // favoriteWorkouts: [{
+  createdAt: {
+    type: Date
+  },
+  exercises: [String],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
@@ -270,7 +268,7 @@ app.post('/workouts', authenticateUser, async (req, res) => {
   try {
     const user = await User.findById(userId)
     if (user) {
-      user.favoriteWorkout.push({ createdAt, exercises })
+      user.favoriteWorkouts.push({ createdAt, exercises })
       await user.save()
       res.status(201).json({
         success: true,
