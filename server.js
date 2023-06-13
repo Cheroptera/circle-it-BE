@@ -52,6 +52,18 @@ app.options('*', cors())
 const { Schema } = mongoose
 
 /// Schemas
+const ExerciseSchema = new Schema({
+  name: String,
+  description: String,
+  musclegroup: [String],
+  equipment: [String],
+  type: String,
+  img: String,
+  highImpact: Boolean
+})
+
+const Exercise = mongoose.model('Exercise', ExerciseSchema)
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -79,18 +91,6 @@ const UserSchema = new mongoose.Schema({
   }
 })
 const User = mongoose.model('User', UserSchema)
-
-const ExerciseSchema = new Schema({
-  name: String,
-  description: String,
-  musclegroup: [String],
-  equipment: [String],
-  type: String,
-  img: String,
-  highImpact: Boolean
-})
-
-const Exercise = mongoose.model('Exercise', ExerciseSchema)
 
 ///* Seed database
 if (process.env.RESET_DB) {
