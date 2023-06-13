@@ -16,25 +16,38 @@ mongoose.Promise = Promise
 const port = process.env.PORT || 8080
 const app = express()
 
-// Add middlewares to enable cors and json body parsing
-app.use((req, res, next) => {
-  res.setHeader(
-    'Access-Control-Allow-Origin', '*'
-    // 'http://localhost:3000', 'http://localhost:3000/set-timer', '*', 'https://imaginative-churros-e76935.netlify.app'
-  )
+// Defines the options for CORS
+const corsOptions = {
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allow GET and POST requests
+  preflightContinue: false, // Enable preflight requests
+  optionsSuccessStatus: 204, // Return 204 status for successful preflight requests
+};
 
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PUT, PATCH')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Content-Type, Authorization, X-RapidAPI-Key'
-  )
-  next()
-})
-app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: 'GET, POST'
-}))
-app.use(express.json())
+
+// Middlewares
+app.use(cors(corsOptions));
+app.use(express.json());
+app.options('*', cors())
+// Add middlewares to enable cors and json body parsing
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     'Access-Control-Allow-Origin', '*'
+//     // 'http://localhost:3000', 'http://localhost:3000/set-timer', '*', 'https://imaginative-churros-e76935.netlify.app'
+//   )
+
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PUT, PATCH')
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'Content-Type, Authorization, X-RapidAPI-Key'
+//   )
+//   next()
+// })
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   methods: 'GET, POST'
+// }))
+// app.use(express.json())
 
 const { Schema } = mongoose
 
@@ -173,7 +186,6 @@ app.get('/welcome', authenticateUser)
 app.get('/welcome', async (req, res) => {
   /*   const accessToken = req.header('Authorization')
     const user = await User.findOne({ accessToken: accessToken }) */
-  // TODO const favorites = await favorites.find({ user: user._id })
   //https://mongoosejs.com/docs/populate.html
   res.status(200).json({ success: true })
 })
