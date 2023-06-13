@@ -52,13 +52,12 @@ const UserSchema = new mongoose.Schema({
     minlength: 6
   },
   //! Check parameter names below and compare to frontend
-  finishedWorkouts: [{
+  favoriteWorkout: [{
     createdAt: {
       type: Date,
       default: Date.now
     },
-    exercises: [],
-    favorite: Boolean
+    exercises: []
   }],
   accessToken: {
     type: String,
@@ -79,17 +78,7 @@ const ExerciseSchema = new Schema({
 
 const Exercise = mongoose.model('Exercise', ExerciseSchema)
 
-const FavoriteSchema = new mongoose.Schema({
-  body: [],
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  }
-})
-
-const FavoriteModel = mongoose.model('Favorite', FavoriteSchema)
-
-/// Seed database
+///* Seed database
 if (process.env.RESET_DB) {
   const seedDatabase = async () => {
     await Exercise.deleteMany()
@@ -186,7 +175,7 @@ app.get('/welcome', async (req, res) => {
     const user = await User.findOne({ accessToken: accessToken }) */
   // TODO const favorites = await favorites.find({ user: user._id })
   //https://mongoosejs.com/docs/populate.html
-  res.status(200).json({ success: true, response: favorites })
+  res.status(200).json({ success: true })
 })
 
 /// All exercises
@@ -213,7 +202,7 @@ app.get('/exercises/random', async (req, res) => {
   }
 })
 
-/// Endpoint for the user to be able to filter exercises based on multiple choices
+/// Filter exercises based on multiple choices
 app.get('/exercises/filter', authenticateUser, async (req, res) => {
   const { musclegroup, equipment, impact } = req.query;
 
@@ -221,18 +210,18 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
     let query = {};
 
     if (musclegroup) {
-      query.musclegroup = { $in: musclegroup.split(',') };
+      query.musclegroup = { $in: musclegroup.split(',') }
     }
 
     if (equipment) {
-      query.equipment = { $in: equipment.split(',') };
+      query.equipment = { $in: equipment.split(',') }
     }
 
     if (impact === 'low') {
       query.highImpact = false;
     }
 
-    const filteredExercises = await Exercise.find(query);
+    const filteredExercises = await Exercise.find(query)
 
     if (filteredExercises.length > 0) {
       res.status(200).json({
@@ -260,100 +249,16 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
   }
 });
 
-/// Endpoint for logged in users to see their favorites
-app.get('exercises/favorites', authenticateUser, async (req, res) => {
-  try {
-    const user = await User.findById(req.user._id).populate('favorites')
-    if (user) {
-      res.json({ favorites: user.favorites })
-    } else {
-      res.status(404).json({ message: 'User not found' })
-    }
-  } catch (error) {
-    res.status(500).json({ error })
-  }
-})
-
-/// Endpoint for the user to remove a favorite from their list
-app.delete(
-  'exercises/favorites/:favoriteId',
-  authenticateUser,
-  async (req, res) => {
-    try {
-      const favoriteId = req.params.favoriteId
-      const userId = req.user._id
-
-      // Find the user and remove the favorite by its ID
-      const user = await User.findByIdAndUpdate(
-        userId,
-        { $pull: { favorites: favoriteId } },
-        { new: true }
-      )
-
-      if (user) {
-        // Delete the favorite document from the FavoriteModel
-        await FavoriteModel.findByIdAndDelete(favoriteId)
-        res.json({ message: 'Favorite deleted successfully' })
-      } else {
-        res.status(404).json({ message: 'User not found' })
-      }
-    } catch (error) {
-      res.status(500).json({ error })
-    }
-  }
-)
-
-/// Add favorites for logged in users
-app.post(
-  '/exercises/addFavorite/:addFavorite',
-  authenticateUser,
-  async (req, res) => {
-    try {
-      const favorite = new FavoriteModel()
-      favorite.user = req.user._id // Assuming req.user contains the logged-in user object with the user ID
-      favorite.body = req.body.body
-      await favorite.save()
-
-      const user = await User.findById(req.user._id)
-      if (user) {
-        user.favorites.push(favorite._id)
-        await user.save()
-        res.json({ message: 'Favorite saved!' })
-      } else {
-        res.status(404).json({ message: 'User not found' })
-      }
-    } catch (error) {
-      res.status(500).json({ error })
-    }
-  }
-)
-
-/// Check if a user's favorites exist:
-const checkFavoritesExist = async (userId) => {
-  try {
-    // Find the favorites that belong to the user
-    const favorites = await FavoriteModel.find({ user: userId })
-    // Check if favorites exist
-    if (favorites.length > 0) {
-      console.log('User has favorites:', favorites)
-    } else {
-      console.log('User has no favorites.')
-    }
-  } catch (error) {
-    console.error('Error checking favorites:', error)
-  }
-}
-
 /// Workouts
 app.post('/workouts', authenticateUser, async (req, res) => {
   console.log(req.body)
-  const { createdAt, exercises, favorite } = req.body
+  const { createdAt, exercises } = req.body
   const userId = req.user._id
 
   try {
     const user = await User.findById(userId)
     if (user) {
-      user.finishedWorkouts.push({ createdAt, exercises, favorite })
+      user.favoriteWorkout.push({ createdAt, exercises })
       await user.save()
       res.status(201).json({
         success: true,
@@ -373,36 +278,6 @@ app.post('/workouts', authenticateUser, async (req, res) => {
   }
 })
 
-/// Recent workouts
-app.get('workouts/recent', authenticateUser, async (req, res) => {
-  const userId = req.user._id
-
-  try {
-    const user = await User.findById(userId)
-    if (user) {
-      const recentWorkouts = user.finishedWorkouts
-      res.status(200).json({
-        success: true,
-        response: recentWorkouts
-      })
-    } else {
-      res.status(404).json({
-        success: false,
-        response: 'User not found, could not save workout'
-      })
-    }
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-
-      response: error
-    })
-  }
-})
-
-/// Call the function and pass the user ID
-const userId = '647ef921853bafaca46af079' // Replace with the actual user ID
-checkFavoritesExist(userId)
 
 /// Start the server
 app.listen(port, () => {
