@@ -31,7 +31,7 @@ app.use((req, res, next) => {
   next()
 })
 app.use(cors({
-  origin: 'http://localhost:3000, https://imaginative-churros-e76935.netlify.app',
+  origin: 'http://localhost:3000',
   methods: 'GET, POST'
 }))
 app.use(express.json())
