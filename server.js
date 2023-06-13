@@ -30,7 +30,10 @@ app.use((req, res, next) => {
   )
   next()
 })
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:3000, https://imaginative-churros-e76935.netlify.app',
+  methods: 'GET, POST'
+}))
 app.use(express.json())
 
 const { Schema } = mongoose
