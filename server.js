@@ -20,14 +20,14 @@ const app = express()
 app.use((req, res, next) => {
   res.setHeader(
     'Access-Control-Allow-Origin',
-    'http://localhost:3000', '*', 'https://imaginative-churros-e76935.netlify.app'
+    'http://localhost:3000', 'http://localhost:3000/set-timer', '*', 'https://imaginative-churros-e76935.netlify.app'
   )
 
-  //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-  //   res.setHeader(
-  //     'Access-Control-Allow-Headers',
-  //     'Content-Type, Authorization, X-RapidAPI-Key'
-  //   )
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PUT, PATCH')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-RapidAPI-Key'
+  )
   next()
 })
 app.use(cors())
