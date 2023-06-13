@@ -69,7 +69,7 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Date
   },
-  exercises: [String],
+  exercises: [Schema.Types.Mixed],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
