@@ -271,11 +271,49 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
   }
 });
 
+app.get('/workouts', authenticateUser, async (req, res) => {
+  console.log('get workouts endpoint is working')
+})
+
+/* EXEMPLE PÅ EN ANNAN GRUPPS PATCH
+app.patch("/users/:id/avatar", authenticateUser);
+app.patch("/users/:id/avatar", async (req, res) => {
+  const { id } = req.params; // Extract the todo id from the request parameters
+  const { avatar } = req.body; // Extract the updated fields from the request body
+  try {
+    const updatedUser = await User.findByIdAndUpdate(id, { avatar }, { new: true }
+    );
+
+    if (updatedUser) {
+      res.status(200).json({
+        success: true,
+        response: updatedUser,
+        message: "Avatar updated successfully"
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        response: "User not found"
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      response: error,
+      message: "Failed to update the avatar"
+    });
+  }
+});
+*/
+
+
+
 /// Workouts
-app.post('/workouts', authenticateUser, async (req, res) => {
-  console.log(req.body)
-  const { timestamp, exercises } = req.body
-  const userId = req.user._id
+app.patch('/workouts', authenticateUser, async (req, res) => {
+  console.log("Saving workout endpoint is working")
+  console.log(req)
+  const { timestamp, exercises, loggedInUser } = req.body
+  // const userId = req.user._id
 
   try {
     const user = await User.findById(userId)
@@ -293,6 +331,7 @@ app.post('/workouts', authenticateUser, async (req, res) => {
       })
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({
       success: false,
       response: error
