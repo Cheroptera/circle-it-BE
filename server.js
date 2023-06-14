@@ -310,13 +310,10 @@ app.patch("/users/:id/avatar", async (req, res) => {
 
 /// Workouts
 app.patch('/workouts', authenticateUser, async (req, res) => {
-  console.log("Saving workout endpoint is working")
-  console.log(req)
-  const { timestamp, exercises, loggedInUser } = req.body
-  // const userId = req.user._id
+  const { timestamp, exercises, loggedInUserId } = req.body
 
   try {
-    const user = await User.findById(userId)
+    const user = await User.findById(loggedInUserId)
     if (user) {
       user.favoriteWorkouts.push({ timestamp, exercises })
       await user.save()
