@@ -271,9 +271,6 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
   }
 });
 
-app.get('/workouts', authenticateUser, async (req, res) => {
-  console.log('get workouts endpoint is working')
-})
 
 /* EXEMPLE PÅ EN ANNAN GRUPPS PATCH
 app.patch("/users/:id/avatar", authenticateUser);
@@ -309,7 +306,7 @@ app.patch("/users/:id/avatar", async (req, res) => {
 
 
 /// Workouts
-app.patch('/workouts', authenticateUser, async (req, res) => {
+app.patch('/favorites', authenticateUser, async (req, res) => {
   const { timestamp, exercises, loggedInUserId } = req.body
 
   try {
@@ -333,6 +330,29 @@ app.patch('/workouts', authenticateUser, async (req, res) => {
       success: false,
       response: error
     })
+  }
+})
+
+//Get favorites
+app.get('/favorites', authenticateUser, async (req, res) => {
+  try {
+    const user = await User.findById(loggedInUserId)
+    if (user) {
+      res.status(200).json({
+        success: true,
+        response: user.favoriteWorkouts,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        response: 'User not found',
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error.message,
+    });
   }
 })
 
