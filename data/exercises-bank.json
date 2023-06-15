@@ -2,15 +2,8 @@
   {
     "name": "Bent Over Row",
     "description": "Bend forward at the hips with a slight bend in the knees. Lower the weight towards the floor. Keep the back flat as you pull the weight to your belly button.",
-    "musclegroup": [
-      "back",
-      "arms"
-    ],
-    "equipment": [
-      "dumbbells",
-      "kettlebell",
-      "weight plate"
-    ],
+    "musclegroup": ["back", "arms"],
+    "equipment": ["dumbbells", "kettlebell", "weight plate"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/bentoverrow.svg",
     "highImpact": false
@@ -18,26 +11,26 @@
   {
     "name": "Bicep Curls",
     "description": "Slowly curl the weight up by bending your elbow, keeping the elbow close to your body.",
-    "musclegroup": [
-      "arms"
-    ],
-    "equipment": [
-      "dumbbells",
-      "kettlebell"
-    ],
+    "musclegroup": ["arms"],
+    "equipment": ["dumbbells", "kettlebell"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/bicepscurl.svg",
     "highImpact": false
   },
   {
+    "name": "Box jump",
+    "description": "Face the box with your feet shoulder width apart, bend your knees. Launch yourself onto the top of the box.",
+    "musclegroup": ["legs"],
+    "equipment": ["box"],
+    "type": "Cardio",
+    "img": "https://storage.googleapis.com/circleit-img/boxjump.svg",
+    "highImpact": true
+  },
+  {
     "name": "Bulgarian Split Squat",
     "description": "Elevate one of your legs. Engage your core and bend your other leg, moving through the downward phase of the exercise without taking the load with your back leg.",
-    "musclegroup": [
-      "legs"
-    ],
-    "equipment": [
-      "box"
-    ],
+    "musclegroup": ["legs"],
+    "equipment": ["box"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/bulgariansplitsquat.svg",
     "highImpact": false
@@ -45,13 +38,8 @@
   {
     "name": "Burpees",
     "description": "Squat and place your hands in front of your feet. Jump back until your legs are fully extended and your body is in plank position. Do a push-up, jump forward, and then push through the heels.",
-    "musclegroup": [
-      "legs",
-      "glutes"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes"],
+    "equipment": ["none"],
     "type": "Cardio",
     "img": "https://storage.googleapis.com/circleit-img/burpee.svg",
     "highImpact": true
@@ -59,13 +47,8 @@
   {
     "name": "Clamshell",
     "description": "Place the band around your thighs right above the knees. Lying on your side, lift your knee with your feet still together.",
-    "musclegroup": [
-      "glutes",
-      "legs"
-    ],
-    "equipment": [
-      "fitness band"
-    ],
+    "musclegroup": ["glutes", "legs"],
+    "equipment": ["fitness band"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/clamshells.svg",
     "highImpact": false
@@ -73,16 +56,8 @@
   {
     "name": "Deadlift",
     "description": "Sit your hips back and lower into a squat. Keep your chest up and your back straight, and begin driving through the heels to move the weight upward.",
-    "musclegroup": [
-      "glutes",
-      "legs",
-      "back"
-    ],
-    "equipment": [
-      "dumbbells",
-      "kettlebell",
-      "weight plate"
-    ],
+    "musclegroup": ["glutes", "legs", "back"],
+    "equipment": ["dumbbells", "kettlebell", "weight plate"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/deadlift.svg",
     "highImpact": false
@@ -90,14 +65,8 @@
   {
     "name": "Glute Bridge",
     "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
-    "musclegroup": [
-      "legs",
-      "glutes",
-      "abs"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes", "abs"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/glutebridge.svg",
     "highImpact": false
@@ -105,25 +74,26 @@
   {
     "name": "Heel Tap",
     "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
-    "musclegroup": [
-      "abs"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["abs"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/heeltap.svg",
     "highImpact": false
   },
   {
+    "name": "Inchworm",
+    "description": "Bend over and touch the floor with the palms of your hands. Walk your hands out, as far as you can while keeping your legs straight, and pause.",
+    "musclegroup": ["abs", "abs"],
+    "equipment": ["none"],
+    "type": "Strength",
+    "img": "https://storage.googleapis.com/circleit-img/inchworm.svg",
+    "highImpact": false
+  },
+  {
     "name": "Jump Rope",
     "description": "Hold the rope while keeping your hands at hip level. Rotate your wrists to swing the rope and jump.",
-    "musclegroup": [
-      "full body"
-    ],
-    "equipment": [
-      "jump rope"
-    ],
+    "musclegroup": ["full body"],
+    "equipment": ["jump rope"],
     "type": "Cardio",
     "img": "https://storage.googleapis.com/circleit-img/jumprope.svg",
     "highImpact": true
@@ -131,13 +101,8 @@
   {
     "name": "Jump Squat",
     "description": "Bend your knees to a full squat position. Jump off and make sure to control your landing before another explosive jump.",
-    "musclegroup": [
-      "glutes",
-      "legs"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["glutes", "legs"],
+    "equipment": ["none"],
     "type": "Cardio",
     "img": "https://storage.googleapis.com/circleit-img/jumpsquat.svg",
     "highImpact": true
@@ -145,14 +110,8 @@
   {
     "name": "Kettlebell Swing",
     "description": "Press your hips back, tipping your torso forward as you reach your hands toward the weight. In one powerful movement, squeeze your glutes and hamstrings to rise to an upright position.",
-    "musclegroup": [
-      "glutes",
-      "abs",
-      "hamstrings"
-    ],
-    "equipment": [
-      "kettlebell"
-    ],
+    "musclegroup": ["glutes", "abs", "hamstrings"],
+    "equipment": ["kettlebell"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/kettlebellswing.svg",
     "highImpact": false
@@ -160,13 +119,8 @@
   {
     "name": "Knee to Elbow Plank",
     "description": "Push yourself into plank position. Maintain a tight core and flat back, and bring one knee to your elbow. Pause and return slowly to the starting point.",
-    "musclegroup": [
-      "abs",
-      "full body"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["abs", "full body"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/kneeupplank.svg",
     "highImpact": false
@@ -174,13 +128,8 @@
   {
     "name": "Lunges",
     "description": "Place you feet shoulder-width apart. Take a step back with one foot, bend both knees to approximately 90 degrees.",
-    "musclegroup": [
-      "legs",
-      "glutes"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/lunges.svg",
     "highImpact": false
@@ -188,13 +137,8 @@
   {
     "name": "Mountain Climbers",
     "description": "Start in a plank. Keep your hips down and run your knees in and out as far and as fast as you can.",
-    "musclegroup": [
-      "legs",
-      "glutes"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes"],
+    "equipment": ["none"],
     "type": "Cardio",
     "img": "https://storage.googleapis.com/circleit-img/mountainclimber.svg",
     "highImpact": true
@@ -202,15 +146,8 @@
   {
     "name": "One Leg Deadlift",
     "description": "Lift your extended leg and pitch your body forward. Slowly bring in your extended leg and return to starting position. ",
-    "musclegroup": [
-      "arms",
-      "back",
-      "shoulders"
-    ],
-    "equipment": [
-      "kettlebell",
-      "dumbbells"
-    ],
+    "musclegroup": ["arms", "back", "shoulders"],
+    "equipment": ["kettlebell", "dumbbells"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/onelegdeadlift.svg",
     "highImpact": false
@@ -218,13 +155,8 @@
   {
     "name": "One Arm Row",
     "description": "Bend forward from the waist. Pull the resistance straight up to the side of your chest, keeping your upper arm close to your side and keeping the torso stationary.",
-    "musclegroup": [
-      "back"
-    ],
-    "equipment": [
-      "kettlebell",
-      "dumbbells"
-    ],
+    "musclegroup": ["back"],
+    "equipment": ["kettlebell", "dumbbells"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/onearmkbrow.svg",
     "highImpact": false
@@ -232,14 +164,8 @@
   {
     "name": "Plank",
     "description": "Plant hands directly under shoulders (slightly wider than shoulder width). Tighten your core, making sure your back is straight.",
-    "musclegroup": [
-      "shoulders",
-      "abs",
-      "full body"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["shoulders", "abs", "full body"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/plank.svg",
     "highImpact": false
@@ -247,14 +173,8 @@
   {
     "name": "Push Up Ankle Taps",
     "description": "Start in a push-up position. Bend your elbows and lower your chest until its just above the floor. As you push back to the starting position, lift your hips, and touch one ankle with your other hand.",
-    "musclegroup": [
-      "shoulders",
-      "abs",
-      "arms"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["shoulders", "abs", "arms"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/pushupankletap.svg",
     "highImpact": false
@@ -262,15 +182,8 @@
   {
     "name": "Push-Ups",
     "description": "Start in a plank position with a tight core and your arms below your shoulders. Slowly bend your elbows and lower yourself to the floor. Push up through your hands.",
-    "musclegroup": [
-      "shoulders",
-      "abs",
-      "arms",
-      "back"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["shoulders", "abs", "arms", "back"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/pushups.svg",
     "highImpact": false
@@ -278,15 +191,8 @@
   {
     "name": "Russian Twists",
     "description": "Sit on the floor. Maintain a tall posture, lean backward until your body is at 45 degree angle from the ground. In a controlled manner, rotate your upper body.",
-    "musclegroup": [
-      "abs"
-    ],
-    "equipment": [
-      "none",
-      "weight plate",
-      "dumbbells",
-      "kettlebell"
-    ],
+    "musclegroup": ["abs"],
+    "equipment": ["none", "weight plate", "dumbbells", "kettlebell"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/russiantwist.svg",
     "highImpact": false
@@ -294,15 +200,8 @@
   {
     "name": "Shoulder Press",
     "description": "Push the weight overhead with your palms, keeping your core tight.",
-    "musclegroup": [
-      "arms",
-      "shoulders",
-      "back"
-    ],
-    "equipment": [
-      "kettlebell",
-      "dumbbells"
-    ],
+    "musclegroup": ["arms", "shoulders", "back"],
+    "equipment": ["kettlebell", "dumbbells"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/shoulderpress.svg",
     "highImpact": false
@@ -310,14 +209,8 @@
   {
     "name": "Shoulder Taps",
     "description": "Get in a plank position with your hands under the shoulders. Engage your core to stabilize your body as you lift one hand off the ground and touch your opposite shoulder. Make sure to keep your hips stable.",
-    "musclegroup": [
-      "full body",
-      "shoulders",
-      "abs"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["full body", "shoulders", "abs"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/shouldertaps.svg",
     "highImpact": false
@@ -325,14 +218,8 @@
   {
     "name": "Side Raise",
     "description": "Hold a weight in each hand in a neutral grip (palms facing inwards). With a slight bend in your elbows, raise the weight outwards and upwards to shoulder height.",
-    "musclegroup": [
-      "arms",
-      "back",
-      "shoulders"
-    ],
-    "equipment": [
-      "dumbbells"
-    ],
+    "musclegroup": ["arms", "back", "shoulders"],
+    "equipment": ["dumbbells"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/sideraise.svg",
     "highImpact": false
@@ -340,12 +227,8 @@
   {
     "name": "Side Shuffle",
     "description": "Stand with your feet a little wider than hip-width apart. Take a few quick steps to the left and then touch your left foot with your left hand.",
-    "musclegroup": [
-      "full body"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["full body"],
+    "equipment": ["none"],
     "type": "Cardio",
     "img": "https://storage.googleapis.com/circleit-img/sideshuffle.svg",
     "highImpact": false
@@ -353,14 +236,8 @@
   {
     "name": "Single Leg Glute Bridge",
     "description": "Lay on the floor with your feet flat and knees bent. Raise one leg off of the ground. Drive through the heel, extending your hip upward and raising your glutes off of the ground.",
-    "musclegroup": [
-      "legs",
-      "glutes",
-      "abs"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes", "abs"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/singleglutebridge.svg",
     "highImpact": false
@@ -368,12 +245,8 @@
   {
     "name": "Sit-Ups",
     "description": "Lie down on your back, with your feet on the floor, knees bent. Bend your hips and waist to raise your body off the ground. Control your movement on the way down.",
-    "musclegroup": [
-      "abs"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["abs"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/situp.svg",
     "highImpact": false
@@ -381,12 +254,8 @@
   {
     "name": "Skater Jumps",
     "description": "Bend one leg behind the supporting leg at a slight angle and leap off to the other leg. Be sure to land softly with your knees slightly bent.",
-    "musclegroup": [
-      "full body"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["full body"],
+    "equipment": ["none"],
     "type": "Cardio",
     "img": "https://storage.googleapis.com/circleit-img/skaterjump.svg",
     "highImpact": true
@@ -394,13 +263,8 @@
   {
     "name": "Squats",
     "description": "Stand with feet shoulder-width apart, toes pointed out. Send hips back and down, bending knees to lower into a squat. Keep chest lifted. Drive feet into ground to stand back up.",
-    "musclegroup": [
-      "legs",
-      "glutes"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/squats.svg",
     "highImpact": false
@@ -408,13 +272,8 @@
   {
     "name": "Step-Ups",
     "description": "With a tall posture, stand up on the box. Keep your chest high, squeeze your glute, allow your knee to straighten and your hips to travel forward.",
-    "musclegroup": [
-      "glutes",
-      "legs"
-    ],
-    "equipment": [
-      "box"
-    ],
+    "musclegroup": ["glutes", "legs"],
+    "equipment": ["box"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/stepup.svg",
     "highImpact": false
@@ -422,29 +281,17 @@
   {
     "name": "Snatches",
     "description": "Sit your hips back and lower into a squat, letting the dumbbell hang down to touch the floor directly beneath your chest. Your back should be straight and you should keep your chest and head up. Return to standing and lift the dumbbell explosively using your legs and back.",
-    "musclegroup": [
-      "arms",
-      "back",
-      "shoulders"
-    ],
-    "equipment": [
-      "dumbbells"
-    ],
+    "musclegroup": ["arms", "back", "shoulders"],
+    "equipment": ["dumbbells"],
     "type": "Strength",
-    "img": "https://placekeanu.com/400/400",
+    "img": "https://storage.googleapis.com/circleit-img/snatch.svg",
     "highImpact": false
   },
   {
     "name": "Sumo Squats",
     "description": "Stand with feet just slightly wider than shoulder-width apart, toes pointing forward or slightly turned out.",
-    "musclegroup": [
-      "legs",
-      "glutes"
-    ],
-    "equipment": [
-      "kettlebell",
-      "dumbbells"
-    ],
+    "musclegroup": ["legs", "glutes"],
+    "equipment": ["kettlebell", "dumbbells"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/sumosquat.svg",
     "highImpact": false
@@ -452,14 +299,8 @@
   {
     "name": "Superman",
     "description": "Lie on your stomach with your arms (overhead) and legs fully extended. Contract your core muscles while raising both your legs and arms off the ground, keeping your head and neck neutral. Hold at top for a couple of seconds. Gently lower yourself back to the starting position",
-    "musclegroup": [
-      "legs",
-      "glutes",
-      "back"
-    ],
-    "equipment": [
-      "none"
-    ],
+    "musclegroup": ["legs", "glutes", "back"],
+    "equipment": ["none"],
     "type": "Strength",
     "img": "https://storage.googleapis.com/circleit-img/superman.svg",
     "highImpact": false
