@@ -339,7 +339,7 @@ app.patch('/favorites', authenticateUser, async (req, res) => {
 app.get('/favorites', authenticateUser, async (req, res) => {
   const accessToken = req.header("Authorization"); // Retrieve the accessToken from the request headers
   try {
-    const user = await User.findById({ accessToken: accessToken })
+    const user = await User.findOne({ accessToken: accessToken })
     if (user) {
       res.status(200).json({
         success: true,
