@@ -22,12 +22,12 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PATCH', 'DELETE'], // Allow GET and POST requests
   preflightContinue: false, // Enable preflight requests
   optionsSuccessStatus: 204, // Return 204 status for successful preflight requests
-};
+}
 
 
 // Middlewares
-app.use(cors(corsOptions));
-app.use(express.json());
+app.use(cors(corsOptions))
+app.use(express.json())
 app.options('*', cors())
 // Add middlewares to enable cors and json body parsing
 // app.use((req, res, next) => {
@@ -85,6 +85,15 @@ const UserSchema = new mongoose.Schema({
       exercises: [ExerciseSchema],
     },
   ],
+  recentWorkouts: [
+    {
+      timestamp: {
+        type: Date, default:
+          Date.now
+      },
+      exercises: [ExerciseSchema],
+    },
+  ],
   accessToken: {
     type: String,
     default: () => crypto.randomBytes(128).toString('hex')
@@ -117,13 +126,13 @@ app.post('/signup', async (req, res) => {
       res.status(400).json({
         success: false,
         response: 'User already exists',
-      });
+      })
     } else {
       const salt = bcrypt.genSaltSync()
       const newUser = await new User({
         username: username,
         password: bcrypt.hashSync(password, salt),
-      }).save();
+      }).save()
       res.status(201).json({
         success: true,
         response: {
@@ -131,7 +140,7 @@ app.post('/signup', async (req, res) => {
           id: newUser._id,
           accessToken: newUser.accessToken,
         },
-      });
+      })
     }
   } catch (e) {
     res.status(500).json({
@@ -226,10 +235,10 @@ app.get('/exercises/random', async (req, res) => {
 
 /// Filter exercises based on multiple choices
 app.get('/exercises/filter', authenticateUser, async (req, res) => {
-  const { musclegroup, equipment, impact } = req.query;
+  const { musclegroup, equipment, impact } = req.query
 
   try {
-    let query = {};
+    let query = {}
 
     if (musclegroup) {
       query.musclegroup = { $in: musclegroup.split(',') }
@@ -240,7 +249,7 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
     }
 
     if (impact === 'low') {
-      query.highImpact = false;
+      query.highImpact = false
     }
 
     const filteredExercises = await Exercise.find(query)
@@ -252,14 +261,14 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
         body: {
           exercises: filteredExercises
         }
-      });
+      })
     } else {
       res.status(404).send({
         success: false,
         body: {
           message: 'No exercises found'
         }
-      });
+      })
     }
   } catch (error) {
     res.status(400).json({
@@ -267,52 +276,18 @@ app.get('/exercises/filter', authenticateUser, async (req, res) => {
       body: {
         message: 'Bad request'
       }
-    });
+    })
   }
-});
+})
 
 
-/* EXEMPLE PÅ EN ANNAN GRUPPS PATCH
-app.patch("/users/:id/avatar", authenticateUser);
-app.patch("/users/:id/avatar", async (req, res) => {
-  const { id } = req.params; // Extract the todo id from the request parameters
-  const { avatar } = req.body; // Extract the updated fields from the request body
-  try {
-    const updatedUser = await User.findByIdAndUpdate(id, { avatar }, { new: true }
-    );
-
-    if (updatedUser) {
-      res.status(200).json({
-        success: true,
-        response: updatedUser,
-        message: "Avatar updated successfully"
-      });
-    } else {
-      res.status(404).json({
-        success: false,
-        response: "User not found"
-      });
-    }
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      response: error,
-      message: "Failed to update the avatar"
-    });
-  }
-});
-*/
-
-
-
-/// Workouts
-/// Workouts
+/// Save favorite workouts
 app.patch('/favorites', authenticateUser, async (req, res) => {
   const { timestamp, exercises } = req.body
-  const accessToken = req.header("Authorization");
+  const accessToken = req.header("Authorization")
 
   try {
-    const user = await User.findOne({ accessToken: accessToken });
+    const user = await User.findOne({ accessToken: accessToken })
     if (user) {
       user.favoriteWorkouts.push({ timestamp, exercises })
       await user.save()
@@ -337,27 +312,87 @@ app.patch('/favorites', authenticateUser, async (req, res) => {
 
 //Get favorites
 app.get('/favorites', authenticateUser, async (req, res) => {
-  const accessToken = req.header("Authorization"); // Retrieve the accessToken from the request headers
+  const accessToken = req.header("Authorization") // Retrieve the accessToken from the request headers
   try {
     const user = await User.findOne({ accessToken: accessToken })
     if (user) {
       res.status(200).json({
         success: true,
         response: user.favoriteWorkouts,
-      });
+      })
     } else {
       res.status(404).json({
         success: false,
         response: 'User not found',
-      });
+      })
     }
   } catch (error) {
     res.status(500).json({
       success: false,
       response: error.message,
-    });
+    })
   }
 })
+
+//Get recent workouts
+
+app.patch('/recent', authenticateUser, async (req, res) => {
+  const { timestamp, exercises } = req.body
+  const accessToken = req.header("Authorization")
+
+  try {
+    const user = await User.findOne({ accessToken: accessToken })
+    if (user) {
+      if (user.recentWorkouts.length >= 5) {
+        user.recentWorkouts.shift() // Remove the oldest workout if the array is full
+      }
+      user.recentWorkouts.push({ timestamp, exercises })
+      await user.save()
+      res.status(201).json({
+        success: true,
+        response: 'Workout saved successfully'
+      })
+    } else {
+      res.status(404).json({
+        success: false,
+        response: 'User not found, could not save the workout'
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success: false,
+      response: error
+    })
+  }
+})
+
+//Get recent workouts
+// Get recent workouts
+app.get('/recent', authenticateUser, async (req, res) => {
+  const accessToken = req.header('Authorization')
+  try {
+    const user = await User.findOne({ accessToken }).populate('recentWorkouts.exercises')
+    if (user) {
+      const recentWorkouts = user.recentWorkouts.slice(-5) // Retrieve the last 5 recent workouts
+      res.status(200).json({
+        success: true,
+        response: recentWorkouts,
+      })
+    } else {
+      res.status(404).json({
+        success: false,
+        response: 'User not found',
+      })
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      response: error.message,
+    })
+  }
+})
+
 
 
 /// Start the server
