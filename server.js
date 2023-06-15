@@ -334,7 +334,7 @@ app.get('/favorites', authenticateUser, async (req, res) => {
   }
 })
 
-//Get recent workouts
+//Add recent workouts
 
 app.patch('/recent', authenticateUser, async (req, res) => {
   const { timestamp, exercises } = req.body
@@ -367,7 +367,6 @@ app.patch('/recent', authenticateUser, async (req, res) => {
   }
 })
 
-//Get recent workouts
 // Get recent workouts
 app.get('/recent', authenticateUser, async (req, res) => {
   const accessToken = req.header('Authorization')
