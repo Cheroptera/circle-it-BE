@@ -306,11 +306,13 @@ app.patch("/users/:id/avatar", async (req, res) => {
 
 
 /// Workouts
+/// Workouts
 app.patch('/favorites', authenticateUser, async (req, res) => {
-  const { timestamp, exercises, loggedInUserId } = req.body
+  const { timestamp, exercises } = req.body
+  const accessToken = req.header("Authorization");
 
   try {
-    const user = await User.findById(loggedInUserId)
+    const user = await User.findOne({ accessToken: accessToken });
     if (user) {
       user.favoriteWorkouts.push({ timestamp, exercises })
       await user.save()
@@ -336,7 +338,7 @@ app.patch('/favorites', authenticateUser, async (req, res) => {
 //Get favorites
 app.get('/favorites', authenticateUser, async (req, res) => {
   try {
-    const user = await User.findById(loggedInUserId)
+    const user = await User.findById({ accessToken: accessToken })
     if (user) {
       res.status(200).json({
         success: true,
