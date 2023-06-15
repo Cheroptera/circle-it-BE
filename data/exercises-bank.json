@@ -1,6 +1,6 @@
 [
   {
-    "name": "Bent over row",
+    "name": "Bent Over Row",
     "description": "Bend forward at the hips with a slight bend in the knees. Lower the weight towards the floor. Keep the back flat as you pull the weight to your belly button.",
     "musclegroup": [
       "back",
@@ -16,7 +16,7 @@
     "highImpact": false
   },
   {
-    "name": "Bicep curl",
+    "name": "Bicep Curls",
     "description": "Slowly curl the weight up by bending your elbow, keeping the elbow close to your body.",
     "musclegroup": [
       "arms"
@@ -30,7 +30,7 @@
     "highImpact": false
   },
   {
-    "name": "Bulgarian split squat",
+    "name": "Bulgarian Split Squat",
     "description": "Elevate one of your legs. Engage your core and bend your other leg, moving through the downward phase of the exercise without taking the load with your back leg.",
     "musclegroup": [
       "legs"
@@ -43,8 +43,8 @@
     "highImpact": false
   },
   {
-    "name": "Burpee",
-    "description": "Squat and place your hands in front of your feet. Jump back until your legs are fully extended and your body is in plank position. Do a push up, jump forward, and then push through the heels.",
+    "name": "Burpees",
+    "description": "Squat and place your hands in front of your feet. Jump back until your legs are fully extended and your body is in plank position. Do a push-up, jump forward, and then push through the heels.",
     "musclegroup": [
       "legs",
       "glutes"
@@ -88,7 +88,7 @@
     "highImpact": false
   },
   {
-    "name": "Glute bridge",
+    "name": "Glute Bridge",
     "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
     "musclegroup": [
       "legs",
@@ -103,7 +103,7 @@
     "highImpact": false
   },
   {
-    "name": "Heel tap",
+    "name": "Heel Tap",
     "description": "Lying flat on your back, bend your legs with your feet placed hip-width apart on the floor.",
     "musclegroup": [
       "abs"
@@ -116,7 +116,7 @@
     "highImpact": false
   },
   {
-    "name": "Jump rope",
+    "name": "Jump Rope",
     "description": "Hold the rope while keeping your hands at hip level. Rotate your wrists to swing the rope and jump.",
     "musclegroup": [
       "full body"
@@ -129,7 +129,7 @@
     "highImpact": true
   },
   {
-    "name": "Jump squat",
+    "name": "Jump Squat",
     "description": "Bend your knees to a full squat position. Jump off and make sure to control your landing before another explosive jump.",
     "musclegroup": [
       "glutes",
@@ -143,7 +143,7 @@
     "highImpact": true
   },
   {
-    "name": "Kettlebell swing",
+    "name": "Kettlebell Swing",
     "description": "Press your hips back, tipping your torso forward as you reach your hands toward the weight. In one powerful movement, squeeze your glutes and hamstrings to rise to an upright position.",
     "musclegroup": [
       "glutes",
@@ -158,7 +158,7 @@
     "highImpact": false
   },
   {
-    "name": "Knee to elbow plank",
+    "name": "Knee to Elbow Plank",
     "description": "Push yourself into plank position. Maintain a tight core and flat back, and bring one knee to your elbow. Pause and return slowly to the starting point.",
     "musclegroup": [
       "abs",
@@ -186,7 +186,7 @@
     "highImpact": false
   },
   {
-    "name": "Mountain climbers",
+    "name": "Mountain Climbers",
     "description": "Start in a plank. Keep your hips down and run your knees in and out as far and as fast as you can.",
     "musclegroup": [
       "legs",
@@ -200,7 +200,7 @@
     "highImpact": true
   },
   {
-    "name": "One leg deadlift",
+    "name": "One Leg Deadlift",
     "description": "Lift your extended leg and pitch your body forward. Slowly bring in your extended leg and return to starting position. ",
     "musclegroup": [
       "arms",
@@ -216,7 +216,7 @@
     "highImpact": false
   },
   {
-    "name": "One arm row",
+    "name": "One Arm Row",
     "description": "Bend forward from the waist. Pull the resistance straight up to the side of your chest, keeping your upper arm close to your side and keeping the torso stationary.",
     "musclegroup": [
       "back"
@@ -245,8 +245,8 @@
     "highImpact": false
   },
   {
-    "name": "Push up ankle tap",
-    "description": "Start in a push up position. Bend your elbows and lower your chest until its just above the floor. As you push back to the starting position, lift your hips, and touch one ankle with your other hand.",
+    "name": "Push Up Ankle Taps",
+    "description": "Start in a push-up position. Bend your elbows and lower your chest until its just above the floor. As you push back to the starting position, lift your hips, and touch one ankle with your other hand.",
     "musclegroup": [
       "shoulders",
       "abs",
@@ -260,7 +260,7 @@
     "highImpact": false
   },
   {
-    "name": "Push up",
+    "name": "Push-Ups",
     "description": "Start in a plank position with a tight core and your arms below your shoulders. Slowly bend your elbows and lower yourself to the floor. Push up through your hands.",
     "musclegroup": [
       "shoulders",
@@ -276,7 +276,7 @@
     "highImpact": false
   },
   {
-    "name": "Russian twist",
+    "name": "Russian Twists",
     "description": "Sit on the floor. Maintain a tall posture, lean backward until your body is at 45 degree angle from the ground. In a controlled manner, rotate your upper body.",
     "musclegroup": [
       "abs"
@@ -292,7 +292,7 @@
     "highImpact": false
   },
   {
-    "name": "Shoulder press",
+    "name": "Shoulder Press",
     "description": "Push the weight overhead with your palms, keeping your core tight.",
     "musclegroup": [
       "arms",
@@ -308,7 +308,7 @@
     "highImpact": false
   },
   {
-    "name": "Shoulder tap",
+    "name": "Shoulder Taps",
     "description": "Get in a plank position with your hands under the shoulders. Engage your core to stabilize your body as you lift one hand off the ground and touch your opposite shoulder. Make sure to keep your hips stable.",
     "musclegroup": [
       "full body",
@@ -323,7 +323,7 @@
     "highImpact": false
   },
   {
-    "name": "Side raise",
+    "name": "Side Raise",
     "description": "Hold a weight in each hand in a neutral grip (palms facing inwards). With a slight bend in your elbows, raise the weight outwards and upwards to shoulder height.",
     "musclegroup": [
       "arms",
@@ -338,7 +338,7 @@
     "highImpact": false
   },
   {
-    "name": "Side shuffle",
+    "name": "Side Shuffle",
     "description": "Stand with your feet a little wider than hip-width apart. Take a few quick steps to the left and then touch your left foot with your left hand.",
     "musclegroup": [
       "full body"
@@ -351,7 +351,7 @@
     "highImpact": false
   },
   {
-    "name": "Single leg glute bridge",
+    "name": "Single Leg Glute Bridge",
     "description": "Lay on the floor with your feet flat and knees bent. Raise one leg off of the ground. Drive through the heel, extending your hip upward and raising your glutes off of the ground.",
     "musclegroup": [
       "legs",
@@ -366,7 +366,7 @@
     "highImpact": false
   },
   {
-    "name": "Sit up",
+    "name": "Sit-Ups",
     "description": "Lie down on your back, with your feet on the floor, knees bent. Bend your hips and waist to raise your body off the ground. Control your movement on the way down.",
     "musclegroup": [
       "abs"
@@ -379,7 +379,7 @@
     "highImpact": false
   },
   {
-    "name": "Skater jumps",
+    "name": "Skater Jumps",
     "description": "Bend one leg behind the supporting leg at a slight angle and leap off to the other leg. Be sure to land softly with your knees slightly bent.",
     "musclegroup": [
       "full body"
@@ -406,7 +406,7 @@
     "highImpact": false
   },
   {
-    "name": "Step up",
+    "name": "Step-Ups",
     "description": "With a tall posture, stand up on the box. Keep your chest high, squeeze your glute, allow your knee to straighten and your hips to travel forward.",
     "musclegroup": [
       "glutes",
@@ -435,7 +435,7 @@
     "highImpact": false
   },
   {
-    "name": "Sumo squat",
+    "name": "Sumo Squats",
     "description": "Stand with feet just slightly wider than shoulder-width apart, toes pointing forward or slightly turned out.",
     "musclegroup": [
       "legs",
