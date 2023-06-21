@@ -44,6 +44,17 @@ app.get('/', (req, res) => {
   res.send(listEndpoints(app))
 })
 
+///* Seed database
+if (process.env.RESET_DB) {
+  const seedDatabase = async () => {
+    await Exercise.deleteMany()
+    exerciseData.forEach((exercise) => {
+      new Exercise(exercise).save()
+    })
+  }
+  seedDatabase()
+}
+
 //* Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
