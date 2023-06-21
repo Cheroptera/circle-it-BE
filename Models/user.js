@@ -16,9 +16,15 @@ const UserSchema = new mongoose.Schema({
   },
   favoriteWorkouts: [
     {
+      favoriteName: {
+        type: String,
+        required: true,
+        minlength: 2,
+        default: Date.now
+      },
       timestamp: {
-        type: Date, default:
-          Date.now
+        type: Date,
+        default: Date.now
       },
       exercises: [ExerciseSchema],
     },
@@ -26,8 +32,8 @@ const UserSchema = new mongoose.Schema({
   recentWorkouts: [
     {
       timestamp: {
-        type: Date, default:
-          Date.now
+        type: Date,
+        default: Date.now
       },
       exercises: [ExerciseSchema],
     },
