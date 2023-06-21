@@ -3,22 +3,22 @@ const router = express.Router()
 import mongoose from 'mongoose'
 import exerciseData from '../data/exercises-bank.json'
 import authenticateUser from '../Middlewares/middlewares'
-import Exercise from '../Models/exercises'
+import { Exercise } from '../Models/exercises'
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/circle-it'
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
-// ///* Seed database
-if (process.env.RESET_DB) {
-  const seedDatabase = async () => {
-    await Exercise.deleteMany()
-    exerciseData.forEach((exercise) => {
-      new Exercise(exercise).save()
-    })
-  }
-  seedDatabase()
-}
+// //* Seed database
+// if (process.env.RESET_DB) {
+//   const seedDatabase = async () => {
+//     await Exercise.deleteMany()
+//     exerciseData.forEach((exercise) => {
+//       new Exercise(exercise).save()
+//     })
+//   }
+//   seedDatabase()
+// }
 
 //* Welcome page
 router.get('/welcome', authenticateUser, async (req, res) => {
