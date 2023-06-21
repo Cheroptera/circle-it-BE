@@ -10,15 +10,15 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
 // ///* Seed database
-// if (process.env.RESET_DB) {
-//   const seedDatabase = async () => {
-//     await Exercise.deleteMany()
-//     exerciseData.forEach((exercise) => {
-//       new Exercise(exercise).save()
-//     })
-//   }
-//   seedDatabase()
-// }
+if (process.env.RESET_DB) {
+  const seedDatabase = async () => {
+    await Exercise.deleteMany()
+    exerciseData.forEach((exercise) => {
+      new Exercise(exercise).save()
+    })
+  }
+  seedDatabase()
+}
 
 //* Welcome page
 router.get('/welcome', authenticateUser, async (req, res) => {
