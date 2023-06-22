@@ -20,9 +20,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 2,
-        default: function () {
-          return this.timestamp.toLocaleString() // Set default name as the formatted timestamp
-        }
+        default: Date.now
       },
       timestamp: {
         type: Date,
