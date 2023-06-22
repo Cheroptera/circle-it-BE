@@ -1,6 +1,6 @@
-import mongoose from "mongoose"
-import crypto from "crypto"
-import { ExerciseSchema } from "./exercises"
+import mongoose from 'mongoose'
+import crypto from 'crypto'
+import { ExerciseSchema } from './exercises'
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -20,14 +20,16 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 2,
-        default: Date.now
+        default: function () {
+          return this.timestamp.toLocaleString() // Set default name as the formatted timestamp
+        }
       },
       timestamp: {
         type: Date,
         default: Date.now
       },
-      exercises: [ExerciseSchema],
-    },
+      exercises: [ExerciseSchema]
+    }
   ],
   recentWorkouts: [
     {
@@ -35,8 +37,8 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
       },
-      exercises: [ExerciseSchema],
-    },
+      exercises: [ExerciseSchema]
+    }
   ],
   accessToken: {
     type: String,
